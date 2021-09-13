@@ -40,6 +40,9 @@ function apiReducer(state = initState, { type, payload }) {
   case 'EXPLORE_SUCCESS':
     return { ...state, explore: payload };
 
+  case 'CLEAR_API_DB':
+    return initState;
+
   case 'LOGOUT':
     return initState;
 

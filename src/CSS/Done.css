@@ -17,11 +17,14 @@
   align-items: center;
   display: flex;
   flex-direction: column;
+
 }
 
 .done-rec-card {
+  box-shadow: 0 0 10px 1px rgb(102, 101, 101);
   display: flex;
   margin-bottom: 15px;
+  padding-top: 5px;
   width: 95%;
 }
 
