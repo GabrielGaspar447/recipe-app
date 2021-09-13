@@ -1,5 +1,6 @@
 {
-  "name": "recipes-app-test",
+  "name": "recipes-app",
+  "homepage": "recipe-app/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
