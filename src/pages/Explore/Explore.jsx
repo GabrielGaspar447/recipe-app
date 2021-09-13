@@ -7,9 +7,11 @@ import '../../CSS/Explore.css';
 function Explore() {
   const dispatch = useDispatch();
   const history = useHistory();
+  
   useEffect(() => {
     dispatch({ type: 'CLEAR_API_DB' });
-  });
+  }, [dispatch]);
+  
   return (
     <>
       <Header title="Explorar" />
