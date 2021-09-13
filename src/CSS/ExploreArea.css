@@ -1,0 +1,16 @@
+.explore-area-select {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.explore-area-select select {
+  background-color: transparent;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 1px rgb(102, 101, 101);
+  height: 30px;
+  text-align: center;
+  width: 90%;
+}

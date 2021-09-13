@@ -1,0 +1,118 @@
+.invisible {
+  display: none;
+}
+
+.details-img-container img {
+  width: 100%;
+}
+
+.details-header-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0 15px;
+}
+
+.details-header-title * {
+  margin: 0;
+  padding: 3px;
+}
+
+.details-header-buttons {
+  position: relative;
+}
+
+.details-header-buttons button {
+  background-color: transparent;
+  border: none;
+}
+
+.details-header-buttons img {
+  margin: 0 8px;
+  width: 26px;
+}
+
+.details-copyMsg {
+  position: absolute;
+  top: 50%;
+}
+
+.details-ingredients-container h3 {
+  margin: 0 5px;
+}
+
+.details-ingredient-list {
+  background-color: rgba(211, 211, 211, 0.774);
+  margin-top: 5px;
+  padding: 5px 0 5px 40px;
+}
+
+.details-instructions-container h3 {
+  margin: 0 5px 5px;
+}
+
+.details-intructions {
+  background-color: rgba(211, 211, 211, 0.774);
+  margin-bottom: 10px;
+  padding: 1px 8px;
+}
+
+.details-video-container {
+  display: flex;
+  justify-content: center;
+}
+
+.details-video-container * {
+  border: none;
+}
+
+.details-recommendations-container {
+  margin-bottom: 70px;
+}
+
+.details-recommendations-container h3 {
+  margin: 10px 5px;
+}
+
+.recomendation-cards-outercontainer {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.recomendation-cards-wrapper {
+  height: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  width: 100%;
+}
+
+.recomendation-cards-innercontainer {
+  display: inline-flex;
+  height: 100%;
+  margin-bottom: 5px;
+}
+
+.recommendation-card {
+  margin: 0 15px;
+  width: 150px;
+}
+
+.recommendation-card img {
+  width: 100%;
+}
+
+.recommendation-card p {
+  margin: 5px 0;
+}
+
+.details-start-btn {
+  background-color: lime;
+  border: none;
+  bottom: 0;
+  left: 2.5%;
+  margin-bottom: 10px;
+  padding: 15px;
+  position: fixed;
+  width: 95%;
+}
+

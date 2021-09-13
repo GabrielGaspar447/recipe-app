@@ -1,0 +1,73 @@
+.fav-cat-container {
+  align-items: center;
+  display: flex;
+  height: 50px;
+  justify-content: space-evenly;
+}
+
+.fav-cat-container button {
+  background-color: rgb(182, 182, 182);
+  border: none;
+  border-radius: 8px;
+  padding: 5px 0;
+  width: 70px;
+}
+
+.fav-cards-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.fav-rec-card {
+  display: flex;
+  margin-bottom: 15px;
+  width: 95%;
+}
+
+.fav-card-img-container {
+  width: 40%;
+}
+
+.fav-card-img-container img {
+  width: 100%;
+}
+
+.fav-card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 15px;
+  width: 55%;
+}
+
+.fav-card-cat {
+  color: rgb(185, 185, 185);
+  margin: 0;
+}
+
+.fav-card-tit {
+  margin-top: 5px;
+}
+
+.fav-card-info a {
+  color: black;
+  text-decoration: none;
+}
+
+.fav-btns-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.fav-copyMsg {
+  bottom: 0;
+  position: absolute;
+}
+
+.fav-btns-container button {
+  background-color: transparent;
+  border: none;
+  margin: 0 10px 20px;
+}

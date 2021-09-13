@@ -1,0 +1,27 @@
+.explore-ing-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 15px 0 60px;
+}
+
+.explore-ing-list a {
+  color: black;
+  text-decoration: none;
+}
+
+.explore-ing-card {
+  align-items: center;
+  box-shadow: 0 0 10px 1px rgb(102, 101, 101);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  margin: 5px;
+  padding: 5px;
+  width: 150px;
+}
+
+.explore-ing-card img {
+  width: 100px;
+}
