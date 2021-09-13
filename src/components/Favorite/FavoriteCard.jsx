@@ -9,13 +9,14 @@ import blackHeartIcon from '../../images/blackHeartIcon.svg';
 const threeSeconds = 3000;
 
 function FavoriteCard({ r, i }) {
+  const { protocol, host, pathname } = window.location;
   const dispatch = useDispatch();
   const favoriteRecipes = useSelector((state) => state.recipes.favoriteRecipes);
   const topText = r.type === 'comida' ? `${r.area} - ${r.category}` : r.alcoholicOrNot;
   const page = r.type === 'comida' ? 'comidas' : 'bebidas';
 
   const shareRecipe = ({ currentTarget }) => {
-    copy(`http://localhost:3000/${page}/${r.id}`);
+    copy(`${protocol}//${host}${pathname}/#/${page}/${r.id}`);
     const copyMsg = currentTarget.previousSibling;
     copyMsg.classList.toggle('invisible');
     setTimeout(() => copyMsg.classList.toggle('invisible'), threeSeconds);

@@ -22,6 +22,7 @@ const createFavObject = (r, spec) => (
 );
 
 function InProgressHeader({ spec }) {
+  const { protocol, host, pathname } = window.location;
   const { id } = useParams();
   const dispatch = useDispatch();
   const recipe = useSelector((state) => state.api.recipe);
@@ -34,7 +35,7 @@ function InProgressHeader({ spec }) {
   const heartIcon = isFavorite ? blackHeartIcon : whiteHeartIcon;
 
   const shareRecipe = () => {
-    copy(`http://localhost:3000/${page}/${id}`);
+    copy(`${protocol}//${host}${pathname}/#/${page}/${id}`);
     const copyMsg = document.querySelector('.copyMsg');
     copyMsg.classList.toggle('invisible');
     setTimeout(() => copyMsg.classList.toggle('invisible'), threeSeconds);

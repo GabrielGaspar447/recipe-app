@@ -23,9 +23,12 @@ const createFavObject = (r, spec) => (
 
 function DetailsHeader({ spec }) {
   const { id } = useParams();
+  const { protocol, host, pathname } = window.location;
   const dispatch = useDispatch();
   const recipe = useSelector((state) => state.api.recipe);
   const favRecipes = useSelector((state) => state.recipes.favoriteRecipes);
+
+  console.log(window.location);
 
   const page = spec === 'Meal' ? 'comidas' : 'bebidas';
   const title = recipe[`str${spec}`];
@@ -34,7 +37,7 @@ function DetailsHeader({ spec }) {
   const heartIcon = isFavorite ? blackHeartIcon : whiteHeartIcon;
 
   const shareRecipe = () => {
-    copy(`http://localhost:3000/${page}/${id}`);
+    copy(`${protocol}//${host}${pathname}/#/${page}/${id}`);
     const copyMsg = document.querySelector('.details-copyMsg');
     copyMsg.classList.toggle('invisible');
     setTimeout(() => copyMsg.classList.toggle('invisible'), threeSeconds);
