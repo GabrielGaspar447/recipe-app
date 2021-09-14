@@ -12,10 +12,6 @@ function RecipesList({ spec }) {
   const error = useSelector((state) => state.api.error);
   const recipesList = useSelector((state) => state.api.recipesList);
 
-  if (recipesList === null) {
-    // eslint-disable-next-line no-alert
-    alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
-  }
   if (fetching) return <h3>Buscando receitas ...</h3>;
   if (error) return <h3>Hmm, Algo deu errado, por favor tente novamente</h3>;
   return (

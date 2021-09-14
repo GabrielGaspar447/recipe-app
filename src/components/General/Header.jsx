@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useHistory } from 'react-router-dom';
@@ -31,11 +32,21 @@ function Header({ title, search }) {
       return;
     }
     toggleSearchBar();
+    setQuery('');
+    setRadioType('');
     if (title === 'Comidas' || title === 'Explorar Origem') {
       const meals = await fetchMealsByQuery(radioType, query, dispatch);
+      if (!meals) {
+        fetchMealsByQuery('s', '', dispatch);
+        return alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+      }
       if (meals.length === 1) history.push(`/comidas/${meals[0].idMeal}`);
     } else {
       const drinks = await fetchDrinksByQuery(radioType, query, dispatch);
+      if (!drinks) {
+        fetchDrinksByQuery('s', '', dispatch);
+        return alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+      }
       if (drinks.length === 1) history.push(`/bebidas/${drinks[0].idDrink}`);
     }
   };
