@@ -28,8 +28,6 @@ function DetailsHeader({ spec }) {
   const recipe = useSelector((state) => state.api.recipe);
   const favRecipes = useSelector((state) => state.recipes.favoriteRecipes);
 
-  console.log(window.location);
-
   const page = spec === 'Meal' ? 'comidas' : 'bebidas';
   const title = recipe[`str${spec}`];
   const subtitle = recipe[spec === 'Meal' ? 'strCategory' : 'strAlcoholic'];

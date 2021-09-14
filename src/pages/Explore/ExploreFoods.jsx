@@ -11,8 +11,8 @@ function ExploreFoods() {
 
   const surpriseMeal = async () => {
     setSurprise(true);
-    fetchDrinksByQuery('s', '', dispatch);
     const id = await fetchRandomMeal(dispatch);
+    fetchDrinksByQuery('s', '', dispatch);
     history.push(`/comidas/${id}`, { from: 'surprise' });
   };
 
