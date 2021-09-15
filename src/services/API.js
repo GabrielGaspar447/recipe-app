@@ -5,9 +5,9 @@ export const fetchMealsByQuery = async (type, query, dispatch) => {
     dispatch({ type: 'FETCHING' });
     const res = await fetch(URL);
     if (!res.ok) throw new Error('Failed to fetch meals recipes');
-    const data = await res.json();
-    dispatch({ type: 'RECIPES_SUCCESS', payload: data.meals });
-    return data.meals;
+    const { meals } = await res.json();
+    dispatch({ type: 'RECIPES_SUCCESS', payload: meals });
+    return meals;
   } catch (error) {
     dispatch({ type: 'ERROR', payload: error.message });
   }
@@ -20,9 +20,9 @@ export const fetchDrinksByQuery = async (type, query, dispatch) => {
     dispatch({ type: 'FETCHING' });
     const res = await fetch(URL);
     if (!res.ok) throw new Error('Failed to fetch drinks recipes');
-    const data = await res.json();
-    dispatch({ type: 'RECIPES_SUCCESS', payload: data.drinks });
-    return data.drinks;
+    const { drinks } = await res.json();
+    dispatch({ type: 'RECIPES_SUCCESS', payload: drinks });
+    return drinks;
   } catch (error) {
     dispatch({ type: 'ERROR', payload: error.message });
   }
@@ -34,8 +34,8 @@ export const fetchMealsCategories = async (dispatch) => {
     // dispatch({ type: 'FETCHING' });
     const res = await fetch(URL);
     if (!res.ok) throw new Error('Failed to fetch meals categories');
-    const data = await res.json();
-    dispatch({ type: 'CATEGORIES_SUCCESS', payload: data.meals });
+    const { meals } = await res.json();
+    dispatch({ type: 'CATEGORIES_SUCCESS', payload: meals });
   } catch (error) {
     // dispatch({ type: 'ERROR', payload: error.message });
   }
@@ -47,8 +47,8 @@ export const fetchDrinksCategories = async (dispatch) => {
     // dispatch({ type: 'FETCHING' });
     const res = await fetch(URL);
     if (!res.ok) throw new Error('Failed to fetch drinks categories');
-    const data = await res.json();
-    dispatch({ type: 'CATEGORIES_SUCCESS', payload: data.drinks });
+    const { drinks } = await res.json();
+    dispatch({ type: 'CATEGORIES_SUCCESS', payload: drinks });
   } catch (error) {
     // dispatch({ type: 'ERROR', payload: error.message });
   }
@@ -60,8 +60,8 @@ export const fetchMealsByCategory = async (category, dispatch) => {
     dispatch({ type: 'FETCHING' });
     const res = await fetch(URL);
     if (!res.ok) throw new Error('Failed to fetch meals recipes');
-    const data = await res.json();
-    dispatch({ type: 'RECIPES_SUCCESS', payload: data.meals });
+    const { meals } = await res.json();
+    dispatch({ type: 'RECIPES_SUCCESS', payload: meals });
   } catch (error) {
     dispatch({ type: 'ERROR', payload: error.message });
   }
@@ -73,8 +73,8 @@ export const fetchDrinksByCategory = async (category, dispatch) => {
     dispatch({ type: 'FETCHING' });
     const res = await fetch(URL);
     if (!res.ok) throw new Error('Failed to fetch drinks recipes');
-    const data = await res.json();
-    dispatch({ type: 'RECIPES_SUCCESS', payload: data.drinks });
+    const { drinks } = await res.json();
+    dispatch({ type: 'RECIPES_SUCCESS', payload: drinks });
   } catch (error) {
     dispatch({ type: 'ERROR', payload: error.message });
   }
@@ -85,8 +85,8 @@ export const fetchMealById = async (id, dispatch) => {
   try {
     const res = await fetch(URL);
     if (!res.ok) throw new Error('Failed to fetch meal recipe');
-    const data = await res.json();
-    dispatch({ type: 'RECIPE_SUCCESS', payload: data.meals[0] });
+    const { meals } = await res.json();
+    dispatch({ type: 'RECIPE_SUCCESS', payload: meals[0] });
   } catch (error) {
     dispatch({ type: 'ERROR', payload: error.message });
   }
@@ -97,8 +97,8 @@ export const fetchDrinkById = async (id, dispatch) => {
   try {
     const res = await fetch(URL);
     if (!res.ok) throw new Error('Failed to fetch drink recipe');
-    const data = await res.json();
-    dispatch({ type: 'RECIPE_SUCCESS', payload: data.drinks[0] });
+    const { drinks } = await res.json();
+    dispatch({ type: 'RECIPE_SUCCESS', payload: drinks[0] });
   } catch (error) {
     dispatch({ type: 'ERROR', payload: error.message });
   }
@@ -109,9 +109,9 @@ export const fetchRandomMeal = async (dispatch) => {
   try {
     const res = await fetch(URL);
     if (!res.ok) throw new Error('Failed to fetch meal recipe');
-    const data = await res.json();
-    dispatch({ type: 'RECIPE_SUCCESS', payload: data.meals[0] });
-    return data.meals[0].idMeal;
+    const { meals } = await res.json();
+    dispatch({ type: 'RECIPE_SUCCESS', payload: meals[0] });
+    return meals[0].idMeal;
   } catch (error) {
     dispatch({ type: 'ERROR', payload: error.message });
   }
@@ -122,9 +122,9 @@ export const fetchRandomDrink = async (dispatch) => {
   try {
     const res = await fetch(URL);
     if (!res.ok) throw new Error('Failed to fetch drink recipe');
-    const data = await res.json();
-    dispatch({ type: 'RECIPE_SUCCESS', payload: data.drinks[0] });
-    return data.drinks[0].idDrink;
+    const { drinks } = await res.json();
+    dispatch({ type: 'RECIPE_SUCCESS', payload: drinks[0] });
+    return drinks[0].idDrink;
   } catch (error) {
     dispatch({ type: 'ERROR', payload: error.message });
   }
@@ -135,8 +135,8 @@ export const fetchMealIngredients = async (dispatch) => {
   try {
     const res = await fetch(URL);
     if (!res.ok) throw new Error('Failed to fetch meal ingredients');
-    const data = await res.json();
-    dispatch({ type: 'EXPLORE_SUCCESS', payload: data.meals });
+    const { meals } = await res.json();
+    dispatch({ type: 'EXPLORE_SUCCESS', payload: meals });
   } catch (error) {
     dispatch({ type: 'ERROR', payload: error.message });
   }
@@ -147,8 +147,8 @@ export const fetchDrinkIngredients = async (dispatch) => {
   try {
     const res = await fetch(URL);
     if (!res.ok) throw new Error('Failed to fetch drink ingredients');
-    const data = await res.json();
-    dispatch({ type: 'EXPLORE_SUCCESS', payload: data.drinks });
+    const { drinks } = await res.json();
+    dispatch({ type: 'EXPLORE_SUCCESS', payload: drinks });
   } catch (error) {
     dispatch({ type: 'ERROR', payload: error.message });
   }
@@ -160,8 +160,8 @@ export const fetchMealByIngredient = async (dispatch, ing) => {
     dispatch({ type: 'FETCHING' });
     const res = await fetch(URL);
     if (!res.ok) throw new Error('Failed to fetch meals recipes by ingredient');
-    const data = await res.json();
-    dispatch({ type: 'RECIPES_SUCCESS', payload: data.meals });
+    const { meals } = await res.json();
+    dispatch({ type: 'RECIPES_SUCCESS', payload: meals });
   } catch (error) {
     dispatch({ type: 'ERROR', payload: error.message });
   }
@@ -173,8 +173,8 @@ export const fetchDrinkByIngredient = async (dispatch, ing) => {
     dispatch({ type: 'FETCHING' });
     const res = await fetch(URL);
     if (!res.ok) throw new Error('Failed to fetch drink recipes by ingredient');
-    const data = await res.json();
-    dispatch({ type: 'RECIPES_SUCCESS', payload: data.drinks });
+    const { drinks } = await res.json();
+    dispatch({ type: 'RECIPES_SUCCESS', payload: drinks });
   } catch (error) {
     dispatch({ type: 'ERROR', payload: error.message });
   }
@@ -185,8 +185,8 @@ export const fetchMealAreas = async (dispatch) => {
   try {
     const res = await fetch(URL);
     if (!res.ok) throw new Error('Failed to fetch meal areas');
-    const data = await res.json();
-    dispatch({ type: 'EXPLORE_SUCCESS', payload: data.meals });
+    const { meals } = await res.json();
+    dispatch({ type: 'EXPLORE_SUCCESS', payload: meals });
   } catch (error) {
     dispatch({ type: 'ERROR', payload: error.message });
   }
@@ -198,8 +198,8 @@ export const fetchMealByArea = async (dispatch, area) => {
     dispatch({ type: 'FETCHING' });
     const res = await fetch(URL);
     if (!res.ok) throw new Error('Failed to fetch meals recipes by ingredient');
-    const data = await res.json();
-    dispatch({ type: 'RECIPES_SUCCESS', payload: data.meals });
+    const { meals } = await res.json();
+    dispatch({ type: 'RECIPES_SUCCESS', payload: meals });
   } catch (error) {
     dispatch({ type: 'ERROR', payload: error.message });
   }
