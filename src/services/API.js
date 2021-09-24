@@ -110,7 +110,6 @@ export const fetchRandomMeal = async (dispatch) => {
     const res = await fetch(URL);
     if (!res.ok) throw new Error('Failed to fetch meal recipe');
     const { meals } = await res.json();
-    dispatch({ type: 'RECIPE_SUCCESS', payload: meals[0] });
     return meals[0].idMeal;
   } catch (error) {
     dispatch({ type: 'ERROR', payload: error.message });
@@ -123,7 +122,6 @@ export const fetchRandomDrink = async (dispatch) => {
     const res = await fetch(URL);
     if (!res.ok) throw new Error('Failed to fetch drink recipe');
     const { drinks } = await res.json();
-    dispatch({ type: 'RECIPE_SUCCESS', payload: drinks[0] });
     return drinks[0].idDrink;
   } catch (error) {
     dispatch({ type: 'ERROR', payload: error.message });

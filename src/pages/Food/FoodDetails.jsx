@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { fetchDrinksByQuery, fetchMealById } from '../../services/API';
 import { DetailsImage, DetailsHeader, DetailsIngredients,
   DetailsInstructions, DetailsVideo,
@@ -8,18 +8,15 @@ import { DetailsImage, DetailsHeader, DetailsIngredients,
 import '../../CSS/Details.css';
 
 function FoodDetails() {
-  const { location } = useHistory();
   const { id } = useParams();
   const dispatch = useDispatch();
   const fetching = useSelector((state) => state.api.fetching);
   const error = useSelector((state) => state.api.error);
 
   useEffect(() => {
-    if (!location.state) {
-      fetchMealById(id, dispatch);
-      fetchDrinksByQuery('s', '', dispatch);
-    }
-  }, [id, dispatch, location.state]);
+    fetchMealById(id, dispatch);
+    fetchDrinksByQuery('s', '', dispatch);
+  }, [id, dispatch]);
 
   if (fetching) return <h3>Buscando detalhes da receita ...</h3>;
   if (error) return <h3>Hmm, Algo deu errado, por favor tente novamente</h3>;

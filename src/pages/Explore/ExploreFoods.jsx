@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Footer, Header } from '../../components/General';
-import { fetchDrinksByQuery, fetchRandomMeal } from '../../services/API';
+import { fetchRandomMeal } from '../../services/API';
 
 function ExploreFoods() {
   const history = useHistory();
@@ -12,7 +12,6 @@ function ExploreFoods() {
   const surpriseMeal = async () => {
     setSurprise(true);
     const id = await fetchRandomMeal(dispatch);
-    fetchDrinksByQuery('s', '', dispatch);
     history.push(`/comidas/${id}`, { from: 'surprise' });
   };
 
