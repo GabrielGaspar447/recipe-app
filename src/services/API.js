@@ -105,6 +105,7 @@ export const fetchDrinkById = async (id, dispatch) => {
 };
 
 export const fetchRandomMeal = async (dispatch) => {
+  dispatch({ type: 'CLEAR_API_DB' });
   const URL = 'https://www.themealdb.com/api/json/v1/1/random.php';
   try {
     const res = await fetch(URL);
@@ -117,6 +118,7 @@ export const fetchRandomMeal = async (dispatch) => {
 };
 
 export const fetchRandomDrink = async (dispatch) => {
+  dispatch({ type: 'CLEAR_API_DB' });
   const URL = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
   try {
     const res = await fetch(URL);
