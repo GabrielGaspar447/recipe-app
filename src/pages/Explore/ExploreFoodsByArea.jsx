@@ -13,14 +13,14 @@ function ExploreFoodsByArea() {
   const [area, setArea] = useState('All');
 
   useEffect(() => {
+    dispatch({ type: 'CLEAR_API_DB' });
+    setFirstRender(false);
     fetchMealAreas()
       .then(({ data }) => setAreas(data.meals))
       .catch((err) => dispatch({ type: 'ERROR', payload: err.message }));
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch({ type: 'CLEAR_API_DB' });
-    setFirstRender(false);
     dispatch({ type: 'FETCHING' });
     if (area === 'All') {
       fetchMealsByQuery('s', '')
@@ -33,7 +33,7 @@ function ExploreFoodsByArea() {
     }
   }, [dispatch, area]);
 
-  if (firstRender.current) return <h2>Buscando receitas...</h2>;
+  if (firstRender) return null;
   if (error) return <h3>Hmm, Algo deu errado, por favor tente novamente</h3>;
   return (
     <>
