@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 function InProgressIngredients({ spec }) {
   const dispatch = useDispatch();
   const recipesProgress = useSelector((state) => state.recipes.inProgressRecipes);
-  const recipe = useSelector((state) => state.api.recipe);
+  const recipe = useSelector((state) => state.api.data);
   const { id } = useParams();
 
   const type = spec === 'Meal' ? 'meals' : 'cocktails';

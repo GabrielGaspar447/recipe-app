@@ -11,8 +11,15 @@ function ExploreDrinks() {
 
   const surpriseDrink = async () => {
     setSurprise(true);
-    const id = await fetchRandomDrink(dispatch);
-    history.push(`/bebidas/${id}`, { from: 'surprise' });
+    try {
+      const { data } = await fetchRandomDrink(dispatch);
+      history.push(`/bebidas/${data.drinks[0].idDrink}`);
+    } catch (err) {
+      // eslint-disable-next-line no-alert
+      alert('Tivemos algum problema ao buscar a receita,'
+      + ' por favor tente novamente mais tarde.');
+      setSurprise(false);
+    }
   };
 
   if (surprise) return <h3>Escolhendo uma receita para você...</h3>;

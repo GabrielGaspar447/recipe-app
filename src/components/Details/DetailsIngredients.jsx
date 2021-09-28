@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 function DetailsIngredients() {
-  const recipe = useSelector((state) => state.api.recipe);
+  const recipe = useSelector((state) => state.api.data.recipe);
   const recKeys = Object.keys(recipe);
   const ingredients = recKeys.filter((k) => k.startsWith('strIngredient') && recipe[k]);
 

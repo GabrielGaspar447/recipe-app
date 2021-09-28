@@ -12,6 +12,40 @@ const radioArray = ['Ingrediente', 'Nome', 'Primeira letra'];
 const radioValues = ['i', 's', 'f'];
 const testId = ['ingredient', 'name', 'first-letter'];
 
+const searchMeals = async (radioType, query, dispatch, history) => {
+  try {
+    const { data } = await fetchMealsByQuery(radioType, query);
+    if (!data.meals) {
+      fetchMealsByQuery('s', '')
+        .then((res) => dispatch({ type: 'SUCCESS', payload: res.data.meals }))
+        .catch((err) => dispatch({ type: 'ERROR', payload: err.message }));
+      alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+      return;
+    }
+    if (data.meals.length === 1) history.push(`/comidas/${data.meals[0].idMeal}`);
+    dispatch({ type: 'SUCCESS', payload: data.meals });
+  } catch (err) {
+    dispatch({ type: 'ERROR', payload: err.message });
+  }
+};
+
+const searchDrinks = async (radioType, query, dispatch, history) => {
+  try {
+    const { data } = await fetchDrinksByQuery(radioType, query);
+    if (!data.drinks) {
+      fetchDrinksByQuery('s', '')
+        .then((res) => dispatch({ type: 'SUCCESS', payload: res.data.drinks }))
+        .catch((err) => dispatch({ type: 'ERROR', payload: err.message }));
+      alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+      return;
+    }
+    if (data.drinks.length === 1) history.push(`/bebidas/${data.drinks[0].idDrink}`);
+    dispatch({ type: 'SUCCESS', payload: data.drinks });
+  } catch (err) {
+    dispatch({ type: 'ERROR', payload: err.message });
+  }
+};
+
 function Header({ title, search }) {
   const dispatch = useDispatch();
   const [searchBarStatus, setSearchBarStatus] = useState(false);
@@ -25,30 +59,24 @@ function Header({ title, search }) {
     if (categories) categories.classList.toggle('invisible');
   };
 
-  const fetchRecipes = async () => {
+  const fetchRecipes = () => {
     if (radioType === 'f' && query.length > 1) {
       // eslint-disable-next-line no-alert
       alert('Sua busca deve conter somente 1 (um) caracter');
       return;
     }
+
     toggleSearchBar();
+
+    dispatch({ type: 'FETCHING' });
+    if (title === 'Comidas' || title === 'Explorar Origem') {
+      searchMeals(radioType, query, dispatch, history);
+    } else {
+      searchDrinks(radioType, query, dispatch, history);
+    }
+
     setQuery('');
     setRadioType('');
-    if (title === 'Comidas' || title === 'Explorar Origem') {
-      const meals = await fetchMealsByQuery(radioType, query, dispatch);
-      if (!meals) {
-        fetchMealsByQuery('s', '', dispatch);
-        return alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
-      }
-      if (meals.length === 1) history.push(`/comidas/${meals[0].idMeal}`);
-    } else {
-      const drinks = await fetchDrinksByQuery(radioType, query, dispatch);
-      if (!drinks) {
-        fetchDrinksByQuery('s', '', dispatch);
-        return alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
-      }
-      if (drinks.length === 1) history.push(`/bebidas/${drinks[0].idDrink}`);
-    }
   };
 
   return (

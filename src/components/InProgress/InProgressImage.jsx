@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
 function InProgressImage({ spec }) {
-  const thumb = useSelector((state) => state.api.recipe[`str${spec}Thumb`]);
+  const thumb = useSelector((state) => state.api.data[`str${spec}Thumb`]);
 
   return (
     <div className="InProgress-img-container">

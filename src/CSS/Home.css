@@ -33,18 +33,20 @@
 }
 
 .categories-container {
+  align-items: center;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin: 5px 0;
+  justify-content: center;
+  margin: 10px 0;
 }
 
-.categories-container button {
-  background-color: hsl(120, 0%, 55%);
+.categories-container select {
+  background-color: transparent;
   border: none;
-  margin: 3px;
-  padding: 3px 0;
-  width: 30%;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 1px rgb(102, 101, 101);
+  height: 30px;
+  text-align: center;
+  width: 90%;
 }
 
 .invisible {

@@ -15,7 +15,7 @@ const shuffle = (array) => {
 };
 
 function DetailsRecommendations({ spec }) {
-  const recipesList = useSelector((state) => state.api.recipesList);
+  const recipesList = useSelector((state) => state.api.data.recoms);
 
   if (!recipesList) return null;
 

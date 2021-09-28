@@ -1,206 +1,83 @@
-export const fetchMealsByQuery = async (type, query, dispatch) => {
+import axios from 'axios';
+
+export const fetchMealsByQuery = async (type, query) => {
   const spec = type === 'i' ? 'filter' : 'search';
   const URL = `https://www.themealdb.com/api/json/v1/1/${spec}.php?${type}=${query}`;
-  try {
-    dispatch({ type: 'FETCHING' });
-    const res = await fetch(URL);
-    if (!res.ok) throw new Error('Failed to fetch meals recipes');
-    const { meals } = await res.json();
-    dispatch({ type: 'RECIPES_SUCCESS', payload: meals });
-    return meals;
-  } catch (error) {
-    dispatch({ type: 'ERROR', payload: error.message });
-  }
+  return axios.get(URL);
 };
 
-export const fetchDrinksByQuery = async (type, query, dispatch) => {
+export const fetchDrinksByQuery = async (type, query) => {
   const spec = type === 'i' ? 'filter' : 'search';
   const URL = `https://www.thecocktaildb.com/api/json/v1/1/${spec}.php?${type}=${query}`;
-  try {
-    dispatch({ type: 'FETCHING' });
-    const res = await fetch(URL);
-    if (!res.ok) throw new Error('Failed to fetch drinks recipes');
-    const { drinks } = await res.json();
-    dispatch({ type: 'RECIPES_SUCCESS', payload: drinks });
-    return drinks;
-  } catch (error) {
-    dispatch({ type: 'ERROR', payload: error.message });
-  }
+  return axios.get(URL);
 };
 
-export const fetchMealsCategories = async (dispatch) => {
+export const fetchMealsCategories = async () => {
   const URL = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
-  try {
-    // dispatch({ type: 'FETCHING' });
-    const res = await fetch(URL);
-    if (!res.ok) throw new Error('Failed to fetch meals categories');
-    const { meals } = await res.json();
-    dispatch({ type: 'CATEGORIES_SUCCESS', payload: meals });
-  } catch (error) {
-    // dispatch({ type: 'ERROR', payload: error.message });
-  }
+  return axios.get(URL);
 };
 
-export const fetchDrinksCategories = async (dispatch) => {
+export const fetchDrinksCategories = async () => {
   const URL = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
-  try {
-    // dispatch({ type: 'FETCHING' });
-    const res = await fetch(URL);
-    if (!res.ok) throw new Error('Failed to fetch drinks categories');
-    const { drinks } = await res.json();
-    dispatch({ type: 'CATEGORIES_SUCCESS', payload: drinks });
-  } catch (error) {
-    // dispatch({ type: 'ERROR', payload: error.message });
-  }
+  return axios.get(URL);
 };
 
-export const fetchMealsByCategory = async (category, dispatch) => {
+export const fetchMealsByCategory = async (category) => {
   const URL = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`;
-  try {
-    dispatch({ type: 'FETCHING' });
-    const res = await fetch(URL);
-    if (!res.ok) throw new Error('Failed to fetch meals recipes');
-    const { meals } = await res.json();
-    dispatch({ type: 'RECIPES_SUCCESS', payload: meals });
-  } catch (error) {
-    dispatch({ type: 'ERROR', payload: error.message });
-  }
+  return axios.get(URL);
 };
 
-export const fetchDrinksByCategory = async (category, dispatch) => {
+export const fetchDrinksByCategory = async (category) => {
   const URL = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`;
-  try {
-    dispatch({ type: 'FETCHING' });
-    const res = await fetch(URL);
-    if (!res.ok) throw new Error('Failed to fetch drinks recipes');
-    const { drinks } = await res.json();
-    dispatch({ type: 'RECIPES_SUCCESS', payload: drinks });
-  } catch (error) {
-    dispatch({ type: 'ERROR', payload: error.message });
-  }
+  return axios.get(URL);
 };
 
-export const fetchMealById = async (id, dispatch) => {
+export const fetchMealById = async (id) => {
   const URL = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
-  try {
-    const res = await fetch(URL);
-    if (!res.ok) throw new Error('Failed to fetch meal recipe');
-    const { meals } = await res.json();
-    dispatch({ type: 'RECIPE_SUCCESS', payload: meals[0] });
-  } catch (error) {
-    dispatch({ type: 'ERROR', payload: error.message });
-  }
+  return axios.get(URL);
 };
 
-export const fetchDrinkById = async (id, dispatch) => {
+export const fetchDrinkById = async (id) => {
   const URL = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
-  try {
-    const res = await fetch(URL);
-    if (!res.ok) throw new Error('Failed to fetch drink recipe');
-    const { drinks } = await res.json();
-    dispatch({ type: 'RECIPE_SUCCESS', payload: drinks[0] });
-  } catch (error) {
-    dispatch({ type: 'ERROR', payload: error.message });
-  }
+  return axios.get(URL);
 };
 
-export const fetchRandomMeal = async (dispatch) => {
-  dispatch({ type: 'CLEAR_API_DB' });
+export const fetchRandomMeal = async () => {
   const URL = 'https://www.themealdb.com/api/json/v1/1/random.php';
-  try {
-    const res = await fetch(URL);
-    if (!res.ok) throw new Error('Failed to fetch meal recipe');
-    const { meals } = await res.json();
-    return meals[0].idMeal;
-  } catch (error) {
-    dispatch({ type: 'ERROR', payload: error.message });
-  }
+  return axios.get(URL);
 };
 
-export const fetchRandomDrink = async (dispatch) => {
-  dispatch({ type: 'CLEAR_API_DB' });
+export const fetchRandomDrink = async () => {
   const URL = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
-  try {
-    const res = await fetch(URL);
-    if (!res.ok) throw new Error('Failed to fetch drink recipe');
-    const { drinks } = await res.json();
-    return drinks[0].idDrink;
-  } catch (error) {
-    dispatch({ type: 'ERROR', payload: error.message });
-  }
+  return axios.get(URL);
 };
 
-export const fetchMealIngredients = async (dispatch) => {
+export const fetchMealIngredients = async () => {
   const URL = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
-  try {
-    const res = await fetch(URL);
-    if (!res.ok) throw new Error('Failed to fetch meal ingredients');
-    const { meals } = await res.json();
-    dispatch({ type: 'EXPLORE_SUCCESS', payload: meals });
-  } catch (error) {
-    dispatch({ type: 'ERROR', payload: error.message });
-  }
+  return axios.get(URL);
 };
 
-export const fetchDrinkIngredients = async (dispatch) => {
+export const fetchDrinkIngredients = async () => {
   const URL = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
-  try {
-    const res = await fetch(URL);
-    if (!res.ok) throw new Error('Failed to fetch drink ingredients');
-    const { drinks } = await res.json();
-    dispatch({ type: 'EXPLORE_SUCCESS', payload: drinks });
-  } catch (error) {
-    dispatch({ type: 'ERROR', payload: error.message });
-  }
+  return axios.get(URL);
 };
 
-export const fetchMealByIngredient = async (dispatch, ing) => {
+export const fetchMealByIngredient = async (ing) => {
   const URL = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ing}`;
-  try {
-    dispatch({ type: 'FETCHING' });
-    const res = await fetch(URL);
-    if (!res.ok) throw new Error('Failed to fetch meals recipes by ingredient');
-    const { meals } = await res.json();
-    dispatch({ type: 'RECIPES_SUCCESS', payload: meals });
-  } catch (error) {
-    dispatch({ type: 'ERROR', payload: error.message });
-  }
+  return axios.get(URL);
 };
 
-export const fetchDrinkByIngredient = async (dispatch, ing) => {
+export const fetchDrinkByIngredient = async (ing) => {
   const URL = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ing}`;
-  try {
-    dispatch({ type: 'FETCHING' });
-    const res = await fetch(URL);
-    if (!res.ok) throw new Error('Failed to fetch drink recipes by ingredient');
-    const { drinks } = await res.json();
-    dispatch({ type: 'RECIPES_SUCCESS', payload: drinks });
-  } catch (error) {
-    dispatch({ type: 'ERROR', payload: error.message });
-  }
+  return axios.get(URL);
 };
 
-export const fetchMealAreas = async (dispatch) => {
+export const fetchMealAreas = async () => {
   const URL = 'https://www.themealdb.com/api/json/v1/1/list.php?a=list';
-  try {
-    const res = await fetch(URL);
-    if (!res.ok) throw new Error('Failed to fetch meal areas');
-    const { meals } = await res.json();
-    dispatch({ type: 'EXPLORE_SUCCESS', payload: meals });
-  } catch (error) {
-    dispatch({ type: 'ERROR', payload: error.message });
-  }
+  return axios.get(URL);
 };
 
-export const fetchMealByArea = async (dispatch, area) => {
+export const fetchMealByArea = async (area) => {
   const URL = `https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`;
-  try {
-    dispatch({ type: 'FETCHING' });
-    const res = await fetch(URL);
-    if (!res.ok) throw new Error('Failed to fetch meals recipes by ingredient');
-    const { meals } = await res.json();
-    dispatch({ type: 'RECIPES_SUCCESS', payload: meals });
-  } catch (error) {
-    dispatch({ type: 'ERROR', payload: error.message });
-  }
+  return axios.get(URL);
 };

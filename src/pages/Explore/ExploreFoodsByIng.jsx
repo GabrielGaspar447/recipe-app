@@ -1,26 +1,34 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Footer, Header } from '../../components/General';
 import { fetchMealIngredients } from '../../services/API';
 import '../../CSS/ExploreIng.css';
 
-const twelve = 12;
-
 function ExploreFoodsByIng() {
+  const [firstRender, setFirstRender] = useState(true);
   const dispatch = useDispatch();
-  const ingredients = useSelector((state) => state.api.explore);
+  const ingredients = useSelector((state) => state.api.data);
+  const fetching = useSelector((state) => state.api.fetching);
+  const error = useSelector((state) => state.api.error);
 
   useEffect(() => {
-    fetchMealIngredients(dispatch);
+    dispatch({ type: 'CLEAR_API_DB' });
+    setFirstRender(false);
+    dispatch({ type: 'FETCHING' });
+    fetchMealIngredients()
+      .then(({ data }) => dispatch({ type: 'SUCCESS', payload: data.meals }))
+      .catch((err) => dispatch({ type: 'ERROR', payload: err.message }));
   }, [dispatch]);
 
-  if (!ingredients) return <h2>Buscando ingredientes...</h2>;
+  if (firstRender) return null;
+  if (fetching) return <h2>Buscando ingredientes...</h2>;
+  if (error) return <h3>Hmm, Algo deu errado, por favor tente novamente</h3>;
   return (
     <>
       <Header title="Explorar Ingredientes" />
       <div className="explore-ing-list">
-        {ingredients.slice(0, twelve).map(({ strIngredient: ing }, idx) => (
+        {ingredients.map(({ strIngredient: ing }, idx) => (
           <Link key={ ing } to={ { pathname: '/comidas', state: { ing } } }>
             <div className="explore-ing-card" data-testid={ `${idx}-ingredient-card` }>
               <img

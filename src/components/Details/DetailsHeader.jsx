@@ -25,7 +25,7 @@ function DetailsHeader({ spec }) {
   const { id } = useParams();
   const { protocol, host, pathname } = window.location;
   const dispatch = useDispatch();
-  const recipe = useSelector((state) => state.api.recipe);
+  const recipe = useSelector((state) => state.api.data.recipe);
   const favRecipes = useSelector((state) => state.recipes.favoriteRecipes);
 
   const page = spec === 'Meal' ? 'comidas' : 'bebidas';

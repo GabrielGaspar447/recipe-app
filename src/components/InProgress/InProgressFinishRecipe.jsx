@@ -24,7 +24,7 @@ function InProgressFinishRecipe({ spec }) {
   const { id } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
-  const recipe = useSelector((state) => state.api.recipe);
+  const recipe = useSelector((state) => state.api.data);
   const recProgress = useSelector((state) => state.recipes.inProgressRecipes[type][id]);
   const doneRecipes = useSelector((state) => state.recipes.doneRecipes);
   const [allDone, setAllDone] = useState(false);
