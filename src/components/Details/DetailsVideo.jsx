@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 function DetailsVideo() {
-  const yt = useSelector((state) => state.api.recipe.strYoutube);
+  const yt = useSelector((state) => state.api.data.recipe.strYoutube);
 
   if (!yt) return null;
 

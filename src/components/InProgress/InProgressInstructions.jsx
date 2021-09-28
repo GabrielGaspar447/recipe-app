@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 function InProgressInstructions() {
-  const instructions = useSelector((state) => state.api.recipe.strInstructions);
+  const instructions = useSelector((state) => state.api.data.strInstructions);
 
   if (!instructions) return null;
 

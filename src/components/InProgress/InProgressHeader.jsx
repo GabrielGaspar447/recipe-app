@@ -25,7 +25,7 @@ function InProgressHeader({ spec }) {
   const { protocol, host, pathname } = window.location;
   const { id } = useParams();
   const dispatch = useDispatch();
-  const recipe = useSelector((state) => state.api.recipe);
+  const recipe = useSelector((state) => state.api.data);
   const favRecipes = useSelector((state) => state.recipes.favoriteRecipes);
 
   const page = spec === 'Meal' ? 'comidas' : 'bebidas';

@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 function DetailsInstructions() {
-  const instructions = useSelector((state) => state.api.recipe.strInstructions);
+  const instructions = useSelector((state) => state.api.data.recipe.strInstructions);
 
   if (!instructions) return null;
 

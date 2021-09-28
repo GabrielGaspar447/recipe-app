@@ -10,7 +10,7 @@ function Profile() {
   const email = useSelector((state) => state.user.email);
 
   const logout = () => {
-    dispatch({ type: 'LOGOUT' });
+    dispatch({ type: 'CLEAR_API_DB' });
     localStorage.clear();
     history.push('/');
   };

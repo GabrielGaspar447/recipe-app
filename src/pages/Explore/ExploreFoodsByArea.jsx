@@ -6,22 +6,35 @@ import { fetchMealAreas, fetchMealByArea, fetchMealsByQuery } from '../../servic
 import '../../CSS/ExploreArea.css';
 
 function ExploreFoodsByArea() {
+  const [firstRender, setFirstRender] = useState(true);
   const dispatch = useDispatch();
-  const areas = useSelector((state) => state.api.explore);
+  const error = useSelector((state) => state.api.error);
+  const [areas, setAreas] = useState([]);
   const [area, setArea] = useState('All');
 
   useEffect(() => {
-    fetchMealAreas(dispatch);
+    fetchMealAreas()
+      .then(({ data }) => setAreas(data.meals))
+      .catch((err) => dispatch({ type: 'ERROR', payload: err.message }));
   }, [dispatch]);
 
   useEffect(() => {
+    dispatch({ type: 'CLEAR_API_DB' });
+    setFirstRender(false);
+    dispatch({ type: 'FETCHING' });
     if (area === 'All') {
-      fetchMealsByQuery('s', '', dispatch);
+      fetchMealsByQuery('s', '')
+        .then(({ data }) => dispatch({ type: 'SUCCESS', payload: data.meals }))
+        .catch((err) => dispatch({ type: 'ERROR', payload: err.message }));
     } else {
-      fetchMealByArea(dispatch, area);
+      fetchMealByArea(area)
+        .then(({ data }) => dispatch({ type: 'SUCCESS', payload: data.meals }))
+        .catch((err) => dispatch({ type: 'ERROR', payload: err.message }));
     }
   }, [dispatch, area]);
 
+  if (firstRender.current) return <h2>Buscando receitas...</h2>;
+  if (error) return <h3>Hmm, Algo deu errado, por favor tente novamente</h3>;
   return (
     <>
       <Header title="Explorar Origem" search />
